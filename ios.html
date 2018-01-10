@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <!-- <meta http-equiv="refresh" content="5" /> -->
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
@@ -19,13 +20,30 @@
         }
 
         video {
-            width: 320px;
+            width: 100%;
         }
 
-        #otherUser, #thisUser {
+        #otherUser{
             position: relative;
-            width: 320px;
-            height: 240px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #audioInfo {
+            height: 80%;
+        }
+
+        #thisUser {
+            position: fixed;
+            height: 100px;
+            width: 100px;
+            border-radius: 50px;
+            right: 10px;
+            bottom: 150px;
+            background: lightgray; 
+        }
+        .fullscreen {
+            height: 100vh;
         }
 
         .playpause {
@@ -44,81 +62,25 @@
 
 </head>
 <body>
-<h1 id="title" class="text-center">Unrupt Calls</h1>
-<h3 id="useragent"></h3>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-<div id="audioInfo" class="card">
-    <div>
-        <div class="card">
-            <h4 class="card-header">Media</h4>
-            <div class="card-body">
-                <div class="container">
-                    <div class="row" id="videoRow">
-                        <div class="col-sm card">
-                            <div class="card-header">Far Camera</div>
-                            <div class="card-body">
-                                <div id="otherUser">
-                                    <div id="pauseOther" class="playpause">
-                                        <object data="pause.svg"></object>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm card"></div>
-                        <div class="col-sm card">
-                            <div class="card-header">This Camera</div>
-                            <div class="card-body">
-                                <div id="thisUser"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm card">
-                            <div class="card-header">Far Microphone <span id="farscope-badge" class="badge badge-secondary">Silent</span></div>
-                            <div class="card-body">
-                                <canvas id="farscope" style="height:200px;width:200px;">Scope</canvas>
-                            </div>
-                        </div>
-                        <div class="col-sm card">
-                            <div class="card-header">Unrupt Buffer <span id="earscope-badge" class="badge badge-secondary">Silent</span>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="earscope" style="height:200px;width:200px;">Scope</canvas>
-                            </div>
-                        </div>
-                        <div class="col-sm card">
-                            <div class="card-header">This Microphone <span id="nearscope-badge" class="badge badge-secondary">Silent</span></div>
-                            <div class="card-body">
-                                <canvas id="nearscope" style="height:200px;width:200px;">Scope</canvas>
-                            </div>
-                        </div>
-                    </div>
+<div class="fullscreen">
+    <h1 id="title" class="text-center">Unrupt Calls (iOS)</h1>
+    <h3 id="useragent"></h3>
+    <div id="audioInfo">
+            <div id="otherUser">
+                <div id="pauseOther" class="playpause">
+                    <object data="pause.svg"></object>
                 </div>
             </div>
-        </div>
+            <div id="thisUser"></div>
     </div>
-    <h4 class="card-header">Buffered audio</h4>
-    <div class="card-body">
-        <div class="progress">
-            <div id="unruptbuffer_spk" class="progress-bar progress-bar-striped bg-warning" role="progressbar"  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-            <div id="unruptbuffer_sil" class="progress-bar " role="progressbar"  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <span id="unruptbuffer_len" class="badge pull-right"></span>
-        <span id="version" class="badge badge-secondary">default</span>
-    </div>
-</div>
-
-
-
-<div class="card">
-    <h4 class="card-header">Call</h4>
-
-    <div class="card-body">
+    <div class="options-bar">
         <div id="chooseAction">
             <h5>Make Shareable Page</h5>
             <button id="chooseActionAudio" type="button" class="btn btn-primary btn-lg">Audio</button>
@@ -131,9 +93,13 @@
             <button id="unruptToggle" type="button" class="btn btn-primary btn-lg">Pause-while-speaking on</button>
             <span id="mode" class="badge badge-primary">Direct</span>
         </div>
-
     </div>
+
 </div>
+
+
+
+
 
 <script src="properties.js"></script>
 <script>
