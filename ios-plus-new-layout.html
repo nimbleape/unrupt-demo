@@ -17,7 +17,7 @@
         #in {
             transform: rotateY(180deg);
         }
-        
+
         video {
             width: 100%;
         }
@@ -41,6 +41,22 @@
         }
         #message_holder{display:none;}
         #message_holder.flash-message{display:block};
+
+        /* @media (min-height: 199.99px) and (min-width: 149.99px) { */
+            .noPadding {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            #audioInfo .audio .card-body {
+                margin: 0 auto;
+                padding: 0;
+            }
+        /* } */
     </style>
 
 </head>
@@ -48,7 +64,7 @@
 <h1 id="title" class="text-center">Unrupt Calls</h1>
 <h3 id="useragent"></h3>
 <div class="alert alert-info" id="message_holder">
-  
+
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -81,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row no-gutters audio">
                         <div class="col-4 card">
                             <div class="card-header buffer-label">Far <span id="farscope-badge" class="badge badge-secondary">Silent</span></div>
                             <div class="card-body">
@@ -833,7 +849,7 @@
          message_holder.html('<strong>' + message + '</strong>');
          message_holder.addClass("flash-message");
          setTimeout(function(){ message_holder.removeClass("flash-message"); }, 3000);
-        
+
 
     });
 
